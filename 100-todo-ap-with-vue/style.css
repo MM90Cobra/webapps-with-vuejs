@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+  color: darkgray;
+}
+
+.container {
+  width: 310px;
+}

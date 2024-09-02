@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="container bg-secondary-subtle">
+    <div id="app" class="col bg-primary-subtle p-3">
+        <header class="row">
+            <h1>Todo App</h1>
+        </header>
+        <main class="row">
+            <form class="col" @submit.prevent="addTodo">
+                <input v-model="newTodoDescription" type="text" name="description" id="description"
+                    placeholder="Insert your new Todo" />
+                <button class="col btn btn-success" type="submit">Add</button>
+            </form>
+
+            <form class="d-grid">
+                <h2>Filter & Options</h2>
+                <ul id="filter-options">
+                    <li v-for="option in filterOptions" :key="option.value">
+                        <input type="radio" name="filter" :id="option.value" :value="option.value" v-model="filter" />
+                        <label :for="option.value">{{ option.label }}</label>
+                    </li>
+                </ul>
+                <button class="btn btn-danger btn-remove" @click.prevent="removeDoneTodos">Remove Done Todos</button>
+            </form>
+
+            <h2>Your Todos</h2>
+            <div>
+                <ul id="todos-output">
+                    <li v-for="todo in filteredTodos" :key="todo.id">
+                        <input type="checkbox" :name="'todo-' + todo.id" :id="'todo-' + todo.id" v-model="todo.done"
+                            @change="updateTodo(todo)" />
+                        <label :for="'todo-' + todo.id">{{ todo.description }}</label>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/vue@latest"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
