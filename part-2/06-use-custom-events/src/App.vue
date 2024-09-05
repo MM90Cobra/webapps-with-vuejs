@@ -1,47 +1,52 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
+  <LayoutHeader />
   <main>
-    <TheWelcome />
+    <div id="app" class="inside">
+      <BookList />
+    </div>
   </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script>
+import LayoutHeader from "./components/LayoutHeader.vue";
+import BookList from "./components/BookList.vue";
+
+export default {
+  name: "App",
+  components: {
+    LayoutHeader,
+    BookList
+  }
+};
+</script>
+
+<style>
+:root {
+  --primary: #6a1cc3;
+  --primary-dark: #370b68;
+  --secondary: #f39c12;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+h1,
+h2,
+h3,
+h4 {
+  color: var(--primary);
+  margin-bottom: 15px;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.inside {
+  margin: 10px;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+@media only screen and (min-width: 1140px) {
+  .inside {
+    width: 960px;
+    margin: 0 auto;
   }
 }
 </style>
